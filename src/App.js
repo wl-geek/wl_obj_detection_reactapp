@@ -1,13 +1,14 @@
 // Import dependencies
 import React, { useRef, useState, useEffect } from "react";
 import * as tf from "@tensorflow/tfjs";
-// 1. TODO - Import required model here
-// e.g. import * as tfmodel from "@tensorflow-models/tfmodel";
+
+// Import required model here
 import * as cocossd from "@tensorflow-models/coco-ssd";
+
 import Webcam from "react-webcam";
 import "./App.css";
-// 2. TODO - Import drawing utility here
-// e.g. import { drawRect } from "./utilities";
+
+// Import drawing utility here
 import {drawRect} from "./utilities";
 
 function App() {
@@ -16,8 +17,8 @@ function App() {
 
   // Main function
   const runCoco = async () => {
-    // 3. TODO - Load network 
-    // e.g. const net = await cocossd.load();
+
+    // Load network 
     const net = await cocossd.load();
     
     //  Loop and detect hands
@@ -46,16 +47,16 @@ function App() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
-      // 4. TODO - Make Detections
-      // e.g. const obj = await net.detect(video);
+      // Make Detections
       const obj = await net.detect(video);
       console.log(obj);
+
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
 
-      // 5. TODO - Update drawing utility
-      // drawSomething(obj, ctx)  
+      // Update drawing utility
       drawRect(obj, ctx);
+
     }
   };
 
@@ -63,6 +64,8 @@ function App() {
 
   return (
     <div className="App">
+      <p style={{fontSize: 8}}><br/></p>
+      <h1 style={{backgroundColor: "#282c34", color: "white", textAlign: "center",}}>WL Object Detection React App</h1>
       <header className="App-header">
         <Webcam
           ref={webcamRef}
@@ -75,8 +78,8 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 480,
+            width: 768,
+            height: 576,
           }}
         />
 
@@ -90,8 +93,8 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 8,
-            width: 640,
-            height: 480,
+            width: 768,
+            height: 576,
           }}
         />
       </header>
